@@ -8,8 +8,8 @@ import AuthContext from "./context/AuthContext"
 import { useState } from "react"
 
 export default function App() {
-  const [token, setToken] = useState(localStorage.setItem("token"))
-  const [nomeUsuario, setNomeUsuário] = useState(localStorage.setItem("nomeUsuario"))
+  const [token, setToken] = useState(localStorage.getItem("token"))
+  const [nomeUsuario, setNomeUsuário] = useState(localStorage.getItem("nomeUsuario"))
 
 
   return (

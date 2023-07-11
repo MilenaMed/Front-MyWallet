@@ -25,8 +25,8 @@ export default function SignInPage() {
       promise.then(response => {
         setToken(response.data.token)
         setNomeUsuário (response.data.nomeUsuário)
-        localStorage.setItem("token", response.data.token)
-        localStorage.setItem("nomeUsuario", response.data.nomeUsuario)
+        localStorage.getItem("token", response.data.token)
+        localStorage.getItem("nomeUsuario", response.data.nomeUsuario)
         alert("Usuário logado")
         navigate('/home')
       })
