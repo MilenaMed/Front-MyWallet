@@ -2,15 +2,41 @@ import styled from "styled-components"
 import { BiExit } from "react-icons/bi"
 import { AiOutlineMinusCircle, AiOutlinePlusCircle } from "react-icons/ai"
 import AuthContext from "../context/AuthContext"
-import { useContext } from "react"
+import { useContext, useEffect } from "react"
+import { useNavigate } from "react-router-dom"
+import axios from "axios"
 
 export default function HomePage() {
-  const {nomeUsuário} = useContext(AuthContext)
+  const navigate = useNavigate();
+  const { nomeUsuário, token, setToken, setNomeUsuário } = useContext(AuthContext)
+
+  useEffect(() => {
+    if (!token) {
+      navigate("/")
+    }
+  })
+
+  function Logout() {
+    const config = { headers: { Authorization: `Bearer ${token}` } }
+
+    const promise = axios.post(`${process.env.REACT_APP_API_URL}/logout`, {}, config)
+    promise.then(() => {
+      setToken(undefined)
+      setNomeUsuário(undefined)
+      console.log("usuário deslogado")
+      localStorage.clear()
+      navigate("/")
+    })
+    promise.catch((err) => {
+      console.log(err)
+    })
+  }
+
   return (
     <HomeContainer>
       <Header>
         <h1>Olá, {nomeUsuário}</h1>
-        <BiExit />
+        <BiExit onClick={Logout} />
       </Header>
 
       <TransactionsContainer>
