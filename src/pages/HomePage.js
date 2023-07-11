@@ -16,7 +16,7 @@ export default function HomePage() {
     }
   })
 
-  function Logout() {
+  function Logout(event) {
     const config = { headers: { Authorization: `Bearer ${token}` } }
 
     const promise = axios.post(`${process.env.REACT_APP_API_URL}/logout`, {}, config)
