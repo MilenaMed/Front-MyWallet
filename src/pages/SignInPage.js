@@ -1,6 +1,9 @@
 import styled from "styled-components"
 import { Link } from "react-router-dom"
 import MyWalletLogo from "../components/MyWalletLogo"
+import { useNavigate } from "react-router-dom";
+import axios from "axios"
+import { useContext } from "react";
 
 export default function SignInPage() {
   return (
@@ -8,11 +11,11 @@ export default function SignInPage() {
       <form>
         <MyWalletLogo />
         <input placeholder="E-mail" type="email" />
-        <input placeholder="Senha" type="password" autocomplete="new-password" />
+        <input placeholder="Senha" type="password" autoComplete="new-password" />
         <button>Entrar</button>
       </form>
 
-      <Link>
+      <Link to={"/cadastro"}>
         Primeira vez? Cadastre-se!
       </Link>
     </SingInContainer>
